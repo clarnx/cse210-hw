@@ -1,10 +1,11 @@
 public class Reference
 {
-    string _book;
-    int _chapter;
-    int _verse;
-    int _endVerse;
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int _endVerse;
 
+    // Constructor for single verse
     public Reference(string book, int chapter, int verse)
     {
         _book = book;
@@ -13,6 +14,7 @@ public class Reference
         _endVerse = verse;
     }
 
+    // Constructor for a verse range
     public Reference(string book, int chapter, int startVerse, int endVerse)
     {
         _book = book;

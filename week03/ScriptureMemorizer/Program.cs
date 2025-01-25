@@ -14,11 +14,9 @@ class Program
             new Scripture(new Reference("Philippians", 4, 13), "I can do all this through him who gives me strength.")
         };
 
-        // Select a random scripture
         var random = new Random();
         var selectedScripture = scriptures[random.Next(scriptures.Count)];
 
-        // Main loop
         while (true)
         {
             Console.Clear();
