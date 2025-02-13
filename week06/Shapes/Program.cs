@@ -10,7 +10,7 @@ class Program
 
         foreach (Shape shape in shapes)
         {
-            Console.WriteLine($"Shape Color: {shape.GetColor()}, Area: {shape.GetArea():F2}");
+            Console.WriteLine($"Shape Color: {shape.GetColor()}, Area: {shape.GetArea()}");
         }
     }
 }
