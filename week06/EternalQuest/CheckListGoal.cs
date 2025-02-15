@@ -1,21 +1,22 @@
-public class ChecklistGoal : Goal
+class ChecklistGoal : Goal
 {
-    public int TargetCount { get; set; }
-    public int CurrentCount { get; set; }
+    private int _amountCompleted;
+    private int _target;
+    private int _bonus;
 
-    public ChecklistGoal(string name, int points, int targetCount) : base(name, points)
+    public ChecklistGoal(string name, string description, int points, int target, int bonus) : base(name, description, points)
     {
-        TargetCount = targetCount;
-        CurrentCount = 0;
+        _amountCompleted = 0;
+        _target = target;
+        _bonus = bonus;
     }
 
     public override void RecordEvent()
     {
-        if (CurrentCount < TargetCount)
-        {
-            CurrentCount++;
-        }
+        _amountCompleted++;
     }
 
-    public override string GetDetailsString() => $"{base.GetDetailsString()}, Progress: {CurrentCount}/{TargetCount}";
+    public override bool IsComplete() => _amountCompleted >= _target;
+    public override string GetDetailsString() => $"[{_amountCompleted}/{_target}] {_shortName} - {_description}";
+    public override string GetStringRepresentation() => $"ChecklistGoal|{_shortName}|{_description}|{_points}|{_target}|{_bonus}|{_amountCompleted}";
 }

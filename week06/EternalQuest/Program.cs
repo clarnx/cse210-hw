@@ -1,14 +1,52 @@
-using System;
-
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        GoalManager manager = new GoalManager();
-        manager.AddGoal(new SimpleGoal("Visit a Friend", 100));
-        manager.AddGoal(new ChecklistGoal("Read Books", 50, 5));
-        manager.AddGoal(new EternalGoal("Exercise Daily", 10));
+        GoalManager goalManager = new GoalManager();
+        goalManager.LoadGoals();
 
-        manager.DisplayGoals();
+        while (true)
+        {
+            Console.WriteLine("\nEternal Quest - Goal Tracker");
+            Console.WriteLine("1. Display Player Info");
+            Console.WriteLine("2. List Goals");
+            Console.WriteLine("3. Record Event");
+            Console.WriteLine("4. Save Goals");
+            Console.WriteLine("5. Exit");
+            Console.Write("Select an option: ");
+
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    goalManager.DisplayPlayerInfo();
+                    break;
+                case "2":
+                    goalManager.ListGoalNames();
+                    break;
+                case "3":
+                    Console.Write("Enter goal number to record an event: ");
+                    if (int.TryParse(Console.ReadLine(), out int goalIndex))
+                    {
+                        goalManager.RecordEvent(goalIndex - 1);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                    }
+                    break;
+                case "4":
+                    goalManager.SaveGoals();
+                    Console.WriteLine("Goals saved successfully.");
+                    break;
+                case "5":
+                    goalManager.SaveGoals();
+                    Console.WriteLine("Exiting... Goals saved.");
+                    return;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+        }
     }
 }
